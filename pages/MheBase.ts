@@ -1,8 +1,5 @@
 export interface Environment{
-    excelLinkForAdmin:string;
-    excelLinkForStudent:string;
-    csvLinkForAdmin:string;
-    excelLinkForAdmin1:string;
+    mheServerUrl:string;
 }
 
 export enum exlHeader {

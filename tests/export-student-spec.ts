@@ -48,36 +48,10 @@ describe('To check Header data matches the spec', function () {
         });
     });
 
-    
     it('Delete all previously downloaded XLSX files from Download folder', async () => {
-        let fileName = "";
-        if (process.env.OS?.startsWith("Windows")) {
-            fileName = process.env.HOMEDRIVE + '' + process.env.HOMEPATH + "\\Downloads\\"
-        } else {
-            console.log('Not windows')
-        }
-        var getMostRecent = function (dir, cb) {
-            var dir = path.resolve(dir);
-            var files = fs.readdir(dir, function (err, files) {
-                var sorted = files.map(function (v) {
-                    var filepath = path.resolve(dir, v);
-                    return {
-                        name: v,
-                        time: fs.statSync(filepath).mtime.getTime()
-                    };
-                })
-                    .sort(function (a, b) { return b.time - a.time; })
-                    .map(function (v) { return v.name; });
-                if (sorted.length > 0) {
-                    cb(null, sorted[0]);
-                } else {
-                    cb('You do not have files in this directory...');
-                }
-            })
-        }
-        getMostRecent(fileName, function (err, recent) {
+        excelData.getMostRecent(excelData.downloadDirPath, function (err, recent) {
             if (err) console.error(err);
-            downloadedFilePath = fileName + '' + recent;
+            downloadedFilePath = excelData.downloadDirPath + '' + recent;
         });
     })
 
@@ -85,15 +59,13 @@ describe('To check Header data matches the spec', function () {
     it('To check excel headers matches or not for "BulkUploadForAdmin"', async () => {
         let exportStudentCsvData;
         await browser.manage().timeouts().implicitlyWait(30000).then(function () {
+            console.log(downloadedFilePath, "downloadedFilePathdownload--------------");
             exportStudentCsvData = excelData.getCsvHeader(downloadedFilePath)
         });
-        await console.log(exportStudentCsvData,"csv data------1111");
-        
-        console.log(excelHeaderBulk.exportStudentHeadersIds,"111111");
-        
+        //await console.log(exportStudentCsvData,"csv data------1111");
         await expect(exportStudentCsvData).toEqual(excelHeaderBulk.exportStudentHeadersIds)
     });
-    
+
 });
 
 

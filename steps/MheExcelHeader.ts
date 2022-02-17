@@ -21,7 +21,8 @@ export const allExcelHeader = {
         adminSeq: 3,
 
         exportStudentHeader: true,
-        exportStudentSeq: 2
+        exportStudentSeq: 2,
+
     },
     [excelHeadersEnum.firstName]: {
         rowHeaderText: 'First Name',
@@ -32,7 +33,10 @@ export const allExcelHeader = {
         studentSeq: 3,
 
         exportStudentHeader: true,
-        exportStudentSeq: 3
+        exportStudentSeq: 3,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 3
     },
     [excelHeadersEnum.middleName]: {
         rowHeaderText: 'Middle Name',
@@ -54,7 +58,10 @@ export const allExcelHeader = {
         studentSeq: 4,
 
         exportStudentHeader: true,
-        exportStudentSeq: 5
+        exportStudentSeq: 5,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 4
     },
     [excelHeadersEnum.gradeLevel]: {
         rowHeaderText: 'Grade Level',
@@ -65,7 +72,10 @@ export const allExcelHeader = {
         studentSeq: 5,
 
         exportStudentHeader: true,
-        exportStudentSeq: 6
+        exportStudentSeq: 6,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 5
     },
     [excelHeadersEnum.email]: {
         rowHeaderText: 'Email',
@@ -73,7 +83,10 @@ export const allExcelHeader = {
         adminSeq: 7,
 
         studentHeader: true,
-        studentSeq: 6
+        studentSeq: 6,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 6
     },
     [excelHeadersEnum.username]: {
         rowHeaderText: 'Username',
@@ -84,8 +97,10 @@ export const allExcelHeader = {
         studentSeq: 7,
 
         exportStudentHeader: true,
-        exportStudentSeq: 8
+        exportStudentSeq: 8,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 7
     },
     [excelHeadersEnum.password]: {
         rowHeaderText: 'Password',
@@ -93,8 +108,10 @@ export const allExcelHeader = {
         adminSeq: 8,
 
         studentHeader: true,
-        studentSeq: 7
+        studentSeq: 7,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 8
     },
     [excelHeadersEnum.classGUID]: {
         rowHeaderText: 'Class GUID',
@@ -102,8 +119,10 @@ export const allExcelHeader = {
         adminSeq: 10,
 
         studentHeader: true,
-        studentSeq: 9
+        studentSeq: 9,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 9
     },
     [excelHeadersEnum.classID]: {
         rowHeaderText: 'Class ID',
@@ -111,8 +130,10 @@ export const allExcelHeader = {
         adminSeq: 11,
 
         studentHeader: true,
-        studentSeq: 10
+        studentSeq: 10,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 10
     },
     [excelHeadersEnum.className]: {
         rowHeaderText: 'Class Name',
@@ -120,8 +141,10 @@ export const allExcelHeader = {
         adminSeq: 12,
 
         studentHeader: true,
-        studentSeq: 11
+        studentSeq: 11,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 11
     },
     [excelHeadersEnum.classGradeLevel]: {
         rowHeaderText: 'Class Grade Level',
@@ -129,8 +152,10 @@ export const allExcelHeader = {
         adminSeq: 13,
 
         studentHeader: true,
-        studentSeq: 12
+        studentSeq: 12,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 12
     },
     [excelHeadersEnum.classStartDate]: {
         rowHeaderText: 'Class Start Date',
@@ -138,8 +163,10 @@ export const allExcelHeader = {
         adminSeq: 14,
 
         studentHeader: true,
-        studentSeq: 13
+        studentSeq: 13,
 
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 13
     },
     [excelHeadersEnum.classEndDate]: {
         rowHeaderText: 'Class End Date',
@@ -147,7 +174,10 @@ export const allExcelHeader = {
         adminSeq: 15,
 
         studentHeader: true,
-        studentSeq: 14
+        studentSeq: 14,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 14
     },
     [excelHeadersEnum.masterCode]: {
         rowHeaderText: 'Master Code',
@@ -155,17 +185,26 @@ export const allExcelHeader = {
         adminSeq: 16,
 
         studentHeader: true,
-        studentSeq: 15
+        studentSeq: 15,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 15
     },
     [excelHeadersEnum.studentGuid]: {
         rowHeaderText: 'Student GUID',
         studentHeader: true,
-        studentSeq: 1
+        studentSeq: 1,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 1
     },
     [excelHeadersEnum.studentId]: {
         rowHeaderText: 'StudentID',
         studentHeader: true,
-        studentSeq: 2
+        studentSeq: 2,
+
+        importStudentBlankTemp: true,
+        importStudentBlankTempSeq: 2
     },
     [excelHeadersEnum.emailAddress]: {
         rowHeaderText: 'Email Address',
@@ -205,6 +244,7 @@ var studentHeadersIds = studentHeaders.map((val) => {
     return val.rowHeaderText
 })
 
+//Export Student from admin login
 const exportStudentHeaders: any[] = [];
 for (let tp of keysOfExel) {
     if (allExcelHeader[tp].exportStudentHeader === true) {
@@ -212,12 +252,25 @@ for (let tp of keysOfExel) {
         exportStudentHeaders.sort((a, b) => (a.exportStudentSeq > b.exportStudentSeq) ? 1 : ((b.exportStudentSeq > a.exportStudentSeq) ? -1 : 0));
     }
 }
-var exportStudentHeadersIds = exportStudentHeaders.map((val) => {
+let exportStudentHeadersIds = exportStudentHeaders.map((val) => {
+    return val.rowHeaderText
+})
+
+//Import student filter for blank template
+const importStdBlankTempHeaders: any[] = [];
+for (let tp of keysOfExel) {
+    if (allExcelHeader[tp].importStudentBlankTemp === true) {
+        importStdBlankTempHeaders.push(allExcelHeader[tp]);
+        importStdBlankTempHeaders.sort((a, b) => (a.importStudentBlankTempSeq > b.importStudentBlankTempSeq) ? 1 : ((b.importStudentBlankTempSeq > a.importStudentBlankTempSeq) ? -1 : 0));
+    }
+}
+var importStdBlankTempHeadersIds = importStdBlankTempHeaders.map((val) => {
     return val.rowHeaderText
 })
 export class ExcelHeaderBulk {
     adminHeadersIds = adminHeadersIds;
     studentHeadersIds = studentHeadersIds;
     exportStudentHeadersIds = exportStudentHeadersIds;
+    importStdBlankTempHeadersIds = importStdBlankTempHeadersIds
 }
 
