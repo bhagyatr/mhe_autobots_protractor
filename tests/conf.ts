@@ -2,7 +2,7 @@ import { Config } from 'protractor';
 
 export let config: Config = {
     framework: 'jasmine',
-    specs: ['./excelReadxlsx-spec.js'],
+    specs: ['./teacherNavigation.js'],
     capabilities: {
         'browserName': 'chrome'
     },
