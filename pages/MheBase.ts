@@ -2,6 +2,11 @@ export interface Environment{
     mheServerUrl:string;
 }
 
+export enum fileExtension{
+    xlsx=".xlsx",
+    csv=".csv"
+}
+
 export enum exlHeader {
     userGuid = 'user-guid',
     userId = 'user-id',

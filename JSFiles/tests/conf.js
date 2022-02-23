@@ -4,7 +4,7 @@ exports.config = void 0;
 exports.config = {
     framework: 'jasmine',
     specs: [
-        './import-student-blank-template-csv-spec.js'
+        './poab3-spec.js'
     ],
     capabilities: {
         'browserName': 'chrome'
@@ -14,4 +14,4 @@ exports.config = {
     },
     //directConnect:true
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3Rlc3RzL2NvbmYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBRVcsUUFBQSxNQUFNLEdBQVc7SUFDeEIsU0FBUyxFQUFFLFNBQVM7SUFDcEIsS0FBSyxFQUFFO1FBQ0gsNkNBQTZDO0tBQ2hEO0lBQ0QsWUFBWSxFQUFFO1FBQ1YsYUFBYSxFQUFFLFFBQVE7S0FDMUI7SUFDRCxlQUFlLEVBQUU7UUFDYixzQkFBc0IsRUFBRSxLQUFLO0tBQ2hDO0lBQ0Qsb0JBQW9CO0NBQ3ZCLENBQUEifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3Rlc3RzL2NvbmYudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBRVcsUUFBQSxNQUFNLEdBQVc7SUFDeEIsU0FBUyxFQUFFLFNBQVM7SUFDcEIsS0FBSyxFQUFFO1FBQ0gsaUJBQWlCO0tBQ3BCO0lBQ0QsWUFBWSxFQUFFO1FBQ1YsYUFBYSxFQUFFLFFBQVE7S0FDMUI7SUFDRCxlQUFlLEVBQUU7UUFDYixzQkFBc0IsRUFBRSxLQUFLO0tBQ2hDO0lBQ0Qsb0JBQW9CO0NBQ3ZCLENBQUEifQ==

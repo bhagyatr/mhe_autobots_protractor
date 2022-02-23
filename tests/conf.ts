@@ -3,7 +3,7 @@ import { Config } from 'protractor';
 export let config: Config = {
     framework: 'jasmine',
     specs: [
-        './import-student-blank-template-csv-spec.js'
+        './poab3-spec.js'
     ],
     capabilities: {
         'browserName': 'chrome'

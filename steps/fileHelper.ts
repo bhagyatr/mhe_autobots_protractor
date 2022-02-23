@@ -2,6 +2,8 @@ let XLSX = require('xlsx');
 import * as fs from "fs";
 const fileSystem = require('fs');
 const path = require('path');
+const csv = require('csv-parser')
+
 
 let downloadDirPath = "";
 if (process.env.OS?.startsWith("Windows")) {
@@ -9,6 +11,18 @@ if (process.env.OS?.startsWith("Windows")) {
 } else {
     console.log('Not windows')
 }
+
+const getSortedDateWise = async (dir) => {
+    const files = await fileSystem.promises.readdir(dir);
+    let result = files
+        .map(fileName => ({
+            name: fileName,
+            time: fs.statSync(`${dir}/${fileName}`).mtime.getTime(),
+        }))
+        .sort((a, b) => b.time - a.time)
+        .map(file => file.name);
+    return result[0];
+};
 export class ExcelData {
     getExcelheader(url: string) {
         let workbook = XLSX.readFile(url)
@@ -18,8 +32,7 @@ export class ExcelData {
             defval: '',
             blankrows: true
         });
-        console.log(sheetData[0], "sheetData[0]sheetData[0]");
-
+       
         let bulkUploadHeader = sheetData[0];
 
         let excelHeaders: any[] = [];
@@ -27,6 +40,16 @@ export class ExcelData {
             excelHeaders.push((i.replace(/[^\w ]/, '').trim()));
         }
         return excelHeaders
+    }
+
+    getExcelData(url: string) {
+        let workbook = XLSX.readFile(url)
+        let sheetsList = workbook.SheetNames
+        let sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetsList[0]], {
+            defval: '',
+            blankrows: true
+        });
+        return sheetData;
     }
     getCsvHeader(url: string) {
         let csvHeaders: any[][] = [];
@@ -41,8 +64,23 @@ export class ExcelData {
         for (let i of csvHeaders[0]) {
             csvData.push((i.replace(/[^\w ]/, '').trim()));
         }
-        // console.log(csvData, "csvData------------");
         return csvData
+    }
+    getData(url: string) {
+        let result: any[] = [];
+        return new Promise((resolve, reject) => {
+            fs.createReadStream(url)
+                .on('error', error => {
+                    reject(error);
+                })
+                .pipe(csv({}))
+                .on('data', (row) => {
+                    result.push(row);
+                })
+                .on('end', () => {
+                    resolve(result);
+                });
+        });
     }
     getMostRecent(dir, cb) {
         var dir = path.resolve(dir);
@@ -64,27 +102,10 @@ export class ExcelData {
         })
     }
 
+    getRecentFilesFromDownloads(downloadDirPath) {
+        let result = getSortedDateWise(downloadDirPath)
+        return result;
+    }
     downloadDirPath = downloadDirPath
-
-
 }
-//Non-used function
-(function () {
-    const directory = 'E:/delFile';
-    fs.readdir(directory, (err, files) => {
-        const EXTENSIONXLSX = '.xlsx';
-        const EXTENSIONCSV = '.csv';
-        const targetFiles = files.filter(file => {
-            let driveFile = path.extname(file).toLowerCase()
-            return (driveFile === EXTENSIONXLSX || driveFile === EXTENSIONCSV);
-        });
-        if (err) throw err;
 
-        for (const file of targetFiles) {
-            console.log(file, "file");
-            // fs.unlink(path.join(directory, file), err => {
-            //   if (err) throw err;
-            // });
-        }
-    });
-})();

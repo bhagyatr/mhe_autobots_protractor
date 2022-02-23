@@ -89,7 +89,7 @@ export const allExcelHeader = {
         importStudentBlankTempSeq: 6
     },
     [excelHeadersEnum.username]: {
-        rowHeaderText: 'Username',
+        rowHeaderText: 'User Name',
         adminHeader: true,
         adminSeq: 8,
 
@@ -199,7 +199,7 @@ export const allExcelHeader = {
         importStudentBlankTempSeq: 1
     },
     [excelHeadersEnum.studentId]: {
-        rowHeaderText: 'StudentID',
+        rowHeaderText: 'Student ID',
         studentHeader: true,
         studentSeq: 2,
 
@@ -217,6 +217,27 @@ export const allExcelHeader = {
         exportStudentSeq: 9
     },
 }
+let errorTeacher=[
+    'Student GUID',     'Student ID',       
+    'First Name',       'Last Name',        
+    'Grade Level',      'Email',
+    'User Name',        'Password',
+    'Class GUID',       'Class ID',
+    'Class Name',       'Class Grade Level',
+    'Class Start Date', 'Class End Date',   
+    'Master Code',      'Errors'
+  ]
+
+  let csvBlankTemp=[
+    'Student GUID',     'StudentID',
+    'First Name',       'Last Name',
+    'Grade Level',      'Email',
+    'Username',         'Password',
+    'Class GUID',       'Class ID',
+    'Class Name',       'Class Grade Level',
+    'Class Start Date', 'Class End Date',
+    'Master Code'
+  ]
 
 const keysOfExel = Object.keys(allExcelHeader);
 
@@ -271,6 +292,9 @@ export class ExcelHeaderBulk {
     adminHeadersIds = adminHeadersIds;
     studentHeadersIds = studentHeadersIds;
     exportStudentHeadersIds = exportStudentHeadersIds;
-    importStdBlankTempHeadersIds = importStdBlankTempHeadersIds
+    importStdBlankTempHeadersIds = importStdBlankTempHeadersIds;
+    errorTeacher=errorTeacher;
+  csvBlankTemp=csvBlankTemp;
+    
 }
 
